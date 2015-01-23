@@ -1,9 +1,11 @@
 var crypto = require('crypto'),
-    express = require('express'),
-    request = require('request'),
-    url = require('url');
+express = require('express'),
+request = require('request'),
+errorHandler = require('errorhandler'),
+http = require('http'),
+url = require('url');
 
-var app = express();
+var app = module.exports = express();
 app.use(express.cookieParser());
 
 // insert your app key and secret here
@@ -12,14 +14,14 @@ var APP_SECRET = 'ystltok87pzc6ue';
 
 function generateCSRFToken() {
     return crypto.randomBytes(18).toString('base64')
-        .replace(/\//g, '-').replace(/\+/g, '_');
+    .replace(/\//g, '-').replace(/\+/g, '_');
 }
 
 function generateRedirectURI(req) {
     return url.format({
-            protocol: req.protocol,
-            host: req.headers.host,
-            pathname: app.path() + '/callback'
+        protocol: req.protocol,
+        host: req.headers.host,
+        pathname: app.path() + '/callback'
     });
 }
 
@@ -80,4 +82,24 @@ app.get('/callback', function (req, res) {
     });
 });
 
-app.listen(5000);
+app.set('port', process.env.PORT || 8080);
+
+var env = process.env.NODE_ENV || 'development';
+
+// development only
+if (env === 'development') {
+    app.use(errorHandler());
+}
+
+// production only
+if (env === 'production') {
+    // TODO
+}
+
+/**
+* Start Server
+*/
+
+http.createServer(app).listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
+});
