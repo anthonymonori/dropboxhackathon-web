@@ -93,7 +93,7 @@ if (env === 'development') {
 
 // production only
 if (env === 'production') {
-    // TODO
+    app.use(errorHandler());
 }
 
 /**
