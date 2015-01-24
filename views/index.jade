@@ -1,11 +1,14 @@
 extends ./layout.jade
 
 block content
-	.content
+	.center-land
 		.row
-			.large-3.columns
-			.large-6.large-centered.columns
-				img.logo(src='img/logo.png')
-				a(href='/login')
-					img.button(src='img/login_btn.png')
-			.large-3.columns
+			.large-12.columns.landing
+				.landlogo
+					img(src='img/logo.png', height='210px', width='210px')
+					.landname PROJECT NAME
+					.landdesc Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+					.landdesc
+						a(href='/login')
+							button.landbutton get started with dropbox
+								

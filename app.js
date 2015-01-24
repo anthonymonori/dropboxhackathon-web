@@ -6,6 +6,7 @@ var express = require('express'),
     path = require('path'),
     url = require('url'),
     cookieParser = require('cookie-parser'),
+    dbox = require("dbox"),
     passport = require('passport'),
     DropboxOAuth2Strategy = require('passport-dropbox-oauth2').Strategy;
 
@@ -15,7 +16,7 @@ var APP_SECRET = 'ystltok87pzc6ue';
 
 var app = module.exports = express();
 var env = process.env.NODE_ENV || 'development';
-
+var dboxApp = dbox.app({ "app_key": APP_KEY, "app_secret": APP_SECRET })
 
 app.configure(function() {
     app.use(express.cookieParser());
@@ -28,12 +29,20 @@ app.configure(function() {
         //callbackURL: "https://dropboxreports.herokuapp.com/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-        profile.accessToken = accessToken;
-        done(null, profile);
+        var user = {
+            provider: 'dropbox',
+            displayName: profile.displayName,
+            email: profile.emails[0].value,
+            // I'm choosing to store the token and tokenSecret on the user.
+            // The keys must be as shown below to be compatible with node-dbox
+            dboxToken: {'oauth_token': accessToken, 'oauth_token_secret': refreshToken}
+        };
+
+        return done(null, user);
     }
     ));
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user.email);
     });
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.bodyParser());
@@ -61,9 +70,9 @@ app.get('/callback',
     passport.authenticate('dropbox-oauth2', { failureRedirect: '/login' }),
         function(req, res) {
         // Successful authentication, redirect home.
-        res.redirect('/stats');
+        req.url = '/stats';
+        res.render('stats', {accessToken: req.user.dboxToken['oauth_token']})
 });
-app.get('/stats', function (req, res) { res.render('stats')});
 
 // start server
 http.createServer(app).listen(app.get('port'), function () {

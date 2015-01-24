@@ -1,16 +1,178 @@
-body {
+body{
     background-color: #1e1f22
 }
 
-.content {
-    padding-top: 50px;
+h1{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  #ffffff;
+    font-size: 24px;
+    font-weight: 300;
 }
 
-.button {
-    width: 306px;
-    height: 70px;
-    padding: 0 0 0 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
+
+h2{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  #919799;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.htext{
+    text-align: left;
+}
+
+.hdate{
+    text-align: right;
+    padding-top: 7px;
+}
+
+.hheader{
+    border-bottom: 1px solid #2a2d2e;
+    height: 40px;
+    padding-top: 1px;
+
+}
+ul{
+    list-style-type: none;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.hlist{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  #919799;
+    font-size: 18px;
+    font-weight: 300;
+    float:left;
+}
+
+.hlistdetail{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  white;
+    font-size: 18px;
+    font-weight: 300;
+    float:right;
+    text-align: right;
+    margin-right:36px;
+}
+
+.cusage{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  #919799;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    width:100%;
+}
+
+.cnumber{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  white;
+    font-size: 46px;
+    font-weight: 300;
+    text-align: center;
+    width:100%;
+}
+
+.cmb{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  white;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    width:100%;
+}
+
+.section2{
+    margin-top:24px;
+}
+
+.sec201{
+    margin-top:24px;
+}
+
+.sec02{
+    height:5px;
+    float:left;
+
+}
+
+.tperc{
+    margin-top:24px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  white;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: right;
+}
+
+.sec0301{
+    text-align: center;
+}
+
+.sec0302{
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  white;
+    font-size: 72px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.sec0303{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.ty-picture{
+    margin-top: 40px;
+}
+
+.section5{
+    border-top: 1px solid #2a2d2e;
+    margin-top: 40px;
+}
+
+.sec51listall{
+    border-bottom: 1px solid #2a2d2e;
+    height: 30px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  #919799;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: left;
+    padding-top:6px;
+    width:100%;
+}
+
+.sec51list{
+    width:50%;
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  #919799;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: left;
+    float: left;
+    margin-top:8px;
+}
+
+.sec51details{
+    width:50%;
+    font-family: 'Roboto Condensed', sans-serif;
+    color:  white;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: right;
+    float: right;
+    margin-top:8px;
+
+}
+
+.center-in{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }

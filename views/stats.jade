@@ -1,3 +1,200 @@
 extends ./layout.jade
 
 block content
+    var jsonRes = #{locals.jsonRes}
+    if !jsonRes
+        .main
+            section.page1
+                .center-in
+            .row
+                .large-12.columns.hheader
+                    .large-6.columns.htxt
+                        h1 General Overview
+                        |       
+                    .large-6.columns.hdate
+                        h2 24 JAN 2015 - 09:19
+            |     
+            .row.section2
+                .large-12.columns.hinfo
+                    .large-3.columns.sec201
+                        div
+                            ul.hlist
+                                li(style='color:#00ff36;') &bull; PICTURE
+                                |             
+                                li(style='color:#e70e1d;') &bull; MOVIE
+                        |         
+                        div
+                            ul.hlistdetail
+                                li 13.83MB
+                                |             
+                                li 283.83MB
+                    |         
+                    .large-3.columns.sec201
+                        div
+                            ul.hlist
+                                li(style='color:#fffc00;') &bull; AUDIO
+                                |               
+                                li(style='color:#00ccff;') &bull; TEXT
+                                |           
+                        div
+                            ul.hlistdetail
+                                li 13.83MB
+                                |               
+                                li 283.83MB
+                    |         
+                    .large-2.columns.hlistsmall
+                        .cusage  USAGE 
+                        |           
+                        .cnumber  2.535 
+                        |           
+                        .cmb  MB 
+                    |         
+                    .large-2.columns.hlistsmall
+                        .cusage  REMAINING 
+                        |           
+                        .cnumber  5.535 
+                        |           
+                        .cmb  MB 
+                    |         
+                    .large-2.columns.hlistsmall
+                        .cusage  TOTAL 
+                        |           
+                        .cnumber  8.535 
+                        |           
+                        .cmb  MB 
+            |     
+            .row
+                .large-12.columns.tperc(style='width: 85%')
+                    | 85%
+                |       
+                .large-12.columns.sec02
+                    div(style='width:30%; background:#00ff36; float:left; height:5px;') &amp;nbsp
+                    |         
+                    div(style='width:10%; background:#e70e1d; float:left; height:5px;') &amp;nbsp
+                    |         
+                    div(style='width:40%; background:#fffc00; float:left; height:5px;') &amp;nbsp
+                    |         
+                    div(style='width:5%; background:#00ccff; float:left; height:5px;') &amp;nbsp
+                    |         
+                    div(style='width:15%; background:black; float:left; height:5px;') &amp;nbsp
+            |     
+            .row
+                .large-12.columns.ftypes
+                    .large-3.columns.ty-picture
+                        .sec0301
+                            img(src='img/icon-pic.png', height='50px', width='50px')
+                        |           
+                        #count01.sec0302
+                        |           
+                        .sec0303(style='color:#00ff36') PICTURE
+                    |         
+                    .large-3.columns.ty-picture
+                        .sec0301
+                            img(src='img/icon-vid.png', height='50px', width='50px')
+                            |           
+                            #count02.sec0302
+                            |           
+                            .sec0303(style='color:#e70e1d') MOVIE
+                    |         
+                    .large-3.columns.ty-picture
+                        .sec0301
+                            img(src='img/icon-au.png', height='50px', width='50px')
+                            |           
+                            #count03.sec0302
+                            |           
+                            .sec0303(style='color:#fffc00') AUDIO
+                    |         
+                    .large-3.columns.ty-picture
+                        .sec0301
+                            img(src='img/icon-txt.png', height='50px', width='50px')
+                            |           
+                            #count04.sec0302
+                            |           
+                            .sec0303(style='color:#00ccff') TEXT
+            |     
+            .row
+                .large-12.columns.section5
+                    .large-3.columns.sec51
+                        .sec51listall File Types
+                        |           
+                        div
+                            ul.sec51list
+                                li JPG
+                                |               
+                                li PNG
+                                |               
+                                li BMP
+                                |               
+                                li GIF
+                        |           
+                        div
+                            ul.sec51details
+                                li 29
+                                |               
+                                li 342
+                                |               
+                                li 64
+                                |               
+                                li 872
+                    |         
+                    .large-3.columns.sec51
+                        .sec51listall File Types
+                        |           
+                        div
+                            ul.sec51list
+                                li MKV
+                                |               
+                                li MP4
+                                |               
+                                li AVI
+                        |           
+                        div
+                            ul.sec51details
+                                li 3
+                                |               
+                                li 6
+                                |               
+                                li 91
+                    |         
+                    .large-3.columns.sec51
+                        .sec51listall File Types
+                        |           
+                        div
+                            ul.sec51list
+                                li MP3
+                        |           
+                        div
+                            ul.sec51details
+                                li 643
+                    |         
+                    .large-3.columns.sec51
+                        .sec51listall File Types
+                        |           
+                        div
+                            ul.sec51list
+                                li DOC
+                                |               
+                                li PDF
+                                |               
+                                li TXT
+                        |           
+                        div
+                            ul.sec51details
+                                li 32
+                                |               
+                                li 631
+                                |               
+                                li 2
+        include count.html
+
+        section.page2
+            ul.sec51details
+                li 32
+                |       
+                li 631
+                |       
+                li 2
+    else 
+        .main
+            section
+                h1 No data found, please refresh in a minute...    
