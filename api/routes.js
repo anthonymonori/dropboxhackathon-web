@@ -1,4 +1,3 @@
-
 /*
  * Serve different routes
  */

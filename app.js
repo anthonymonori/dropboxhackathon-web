@@ -5,34 +5,44 @@ var express = require('express'),
     routes = require('./api/routes'),
     path = require('path'),
     url = require('url'),
-    passport = require('passport-dropbox-oauth2');
+    cookieParser = require('cookie-parser'),
+    passport = require('passport'),
+    DropboxOAuth2Strategy = require('passport-dropbox-oauth2').Strategy;
 
 // insert your app key and secret here
 var APP_KEY = '5qrvnudv5gltoy8';
 var APP_SECRET = 'ystltok87pzc6ue';
 
-
 var app = module.exports = express();
 var env = process.env.NODE_ENV || 'development';
 
-passport.use(new DropboxOAuth2Strategy({
-    clientID: APP_KEY,
-    clientSecret: APP_SECRET,
-    callbackURL: "http://localhost:8080/callback"
-    //callbackURL: "https://dropboxreports.herokuapp.com/callback"
-},
-function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ providerId: profile.id }, function (err, user) {
-        return done(err, user);
-    });
-}
-));
 
-app.use(cookieParser());
+app.configure(function() {
+    app.use(express.cookieParser());
+    app.use(express.session({ secret: 'keyboard cat' }));
+    app.use(passport.initialize());
+    passport.use(new DropboxOAuth2Strategy({
+        clientID: APP_KEY,
+        clientSecret: APP_SECRET,
+        //callbackURL: "http://localhost:8080/callback"
+        callbackURL: "https://dropboxreports.herokuapp.com/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+        profile.accessToken = accessToken;
+        done(null, profile);
+    }
+    ));
+    passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
+    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.bodyParser());
+    app.use(app.router);
+});
+
 app.set('port', process.env.PORT || 8080);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.static(path.join(__dirname, 'public')));
 app.set('json spaces',4);
 
 // development only
@@ -46,8 +56,14 @@ if (env === 'production') {
 }
 
 app.get('/', routes.home);
-//app.get('/login', routes.login);
-//app.get('/stats', routes.stats);
+app.get('/login', passport.authenticate('dropbox-oauth2'));
+app.get('/callback',
+    passport.authenticate('dropbox-oauth2', { failureRedirect: '/login' }),
+        function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/stats');
+});
+app.get('/stats', function (req, res) { res.render('stats')});
 
 // start server
 http.createServer(app).listen(app.get('port'), function () {
