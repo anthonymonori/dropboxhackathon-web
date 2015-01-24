@@ -7,6 +7,6 @@
         "request": "2.x",
         "errorhandler": "1.x",
         "jade": "1.x",
-        "cookie-parser" : "1.x"
+        "passport-dropbox-oauth2": "0.1.x"
     }
 }
