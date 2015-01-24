@@ -1,7 +1,11 @@
 extends ./layout.jade
 
 block content
-	img.logo(src='img/logo.png')
-	.brand PRODUCTname
-	a.login(href='/login')
-		img(src='img/login_btn.png' width='250px')
+	.content
+		.row
+			.large-3.columns
+			.large-6.large-centered.columns
+				img.logo(src='img/logo.png')
+				a(href='/login')
+					img.button(src='img/login_btn.png')
+			.large-3.columns

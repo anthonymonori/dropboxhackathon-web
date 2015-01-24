@@ -1,15 +1,7 @@
 'use strict';
 
-angular.module('dropboxreports', [
-	'ngRoute',
-	'myApp.controllers',
-	'myApp.directives'
-]).
-config(function ($routeProvider, $locationProvider) {
-	$routeProvider.
-		otherwise({
-			redirectTo: '/'
-		});
+$(document).foundation();
+var APP_KEY = '5qrvnudv5gltoy8';
+var REDIRECT_URI = '/callback';
 
-	  $locationProvider.html5Mode(true);
-});
+angular.module('hackathon-manifest', [])});
