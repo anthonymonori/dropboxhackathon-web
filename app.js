@@ -24,8 +24,8 @@ app.configure(function() {
     passport.use(new DropboxOAuth2Strategy({
         clientID: APP_KEY,
         clientSecret: APP_SECRET,
-        //callbackURL: "http://localhost:8080/callback"
-        callbackURL: "https://dropboxreports.herokuapp.com/callback"
+        callbackURL: "http://localhost:8080/callback"
+        //callbackURL: "https://dropboxreports.herokuapp.com/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         profile.accessToken = accessToken;
