@@ -21,6 +21,18 @@ h2{
     text-align: left;
 }
 
+.landing {
+	text-align: center;
+}
+
+.landname {
+	color: #FFFFEE;
+}
+
+.landdesc {
+	color: #FFFFEE;
+}
+
 .hdate{
     text-align: right;
     padding-top: 7px;
@@ -39,6 +51,14 @@ ul{
     margin: 0px;
 }
 
+.container.center-land {
+    margin: auto;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+}
 
 .hlist{
     font-family: 'Roboto Condensed', sans-serif;
